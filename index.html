@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Andrea &amp; Camilo. Viernes 17 de diciembre de 2027, 3:00 p. m. Hacienda La Victoria, Subachoque.">
+<meta name="theme-color" content="#1b1b19">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Andrea &amp; Camilo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Concepto: la paleta de la propuesta de la boda (verde lima y oliva, naranja mandarina, durazno, marfil)
+   sobre fotos en blanco y negro. Bandas de color con fotos que cruzan de una a otra,
+   y todo entrando en cadena, una pieza tras otra. */
+:root {
+  --ivory: #f1f0ea;
+  --ivory-2: #f8f7f2;
+  --sage: #dde1a4;
+  --ink: #1b1b19;
+  --deep: #3e4a1e;
+  --ink-2: #2b2b28;
+  --lime: #d4d686;
+  --olive: #8d9846;
+  --olive-deep: #4f5a25;
+  --orange: #f3935a;
+  --orange-deep: #d9702f;
+  --peach: #f4bc85;
+  --beige: #ead7b8;
+  --text: #262624;
+  --mute: #5c5c54;
+  --on-ink: #f1f0ea;
+  --on-ink-dim: rgba(241, 240, 234, .7);
+  --line-ink: rgba(241, 240, 234, .4);
+  --line-light: rgba(27, 27, 25, .32);
+  --f-script: "Alex Brush", "Snell Roundhand", "Brush Script MT", cursive;
+  --f-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --f-sans: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --photo-filter: grayscale(1) contrast(1.06) brightness(.98); /* quita esta línea para ver las fotos a color */
+  --gx: clamp(22px, 5vw, 72px);
+  --overlap: clamp(90px, 15vw, 180px);
+  --noise-d: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 -.015'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --noise-l: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .12 -.02'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ivory); color: var(--text);
+  font-family: var(--f-sans); font-weight: 300; font-size: 16px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; overflow-x: clip;
+}
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+p, h1, h2, figure { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+.band { position: relative; }
+.ink { background-color: var(--deep); background-image: var(--noise-l); color: var(--on-ink); }
+.ivory { background-color: var(--ivory); background-image: var(--noise-d); color: var(--text); }
+.sage { background-color: var(--deep); background-image: var(--noise-l); color: var(--on-ink); }
+.orange { background-color: var(--deep); background-image: var(--noise-l); color: var(--on-ink); }
+.in {
+  max-width: 1180px; margin-inline: auto;
+  padding-left: max(var(--gx), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gx), env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Animación en cadena ---------- */
+.rv {
+  --t: 1s;
+  transition:
+    opacity var(--t) var(--ease) var(--d, 0s),
+    transform var(--t) var(--ease) var(--d, 0s),
+    clip-path calc(var(--t) * 1.15) var(--ease) var(--d, 0s),
+    -webkit-mask-position calc(var(--t) * 1.4) cubic-bezier(.5, .1, .25, 1) var(--d, 0s),
+    mask-position calc(var(--t) * 1.4) cubic-bezier(.5, .1, .25, 1) var(--d, 0s);
+}
+.js .rv:not(.on) { opacity: 0; }
+.js .rv.up:not(.on) { transform: translateY(26px); }
+.js .rv.pop:not(.on) { transform: scale(.3); }
+.js .rv.line:not(.on) { transform: scaleX(0); opacity: 1; }
+.js .rv.clip:not(.on) { clip-path: inset(100% 0 0 0); opacity: 1; }
+.rv.wipe {
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 58%);
+  mask-image: linear-gradient(90deg, #000 40%, transparent 58%);
+  -webkit-mask-size: 250% 100%; mask-size: 250% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0; mask-position: 0 0;
+}
+.js .rv.wipe:not(.on) { opacity: 1; -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rv, .ph img { transition: none !important; }
+  .js .rv:not(.on) { opacity: 1; transform: none; clip-path: none; -webkit-mask-position: 0 0; mask-position: 0 0; }
+  .mini, .pulse { animation: none !important; }
+}
+
+/* ---------- Fotos ---------- */
+.ph { position: relative; overflow: hidden; background: var(--ink-2); }
+.ph img { width: 100%; height: 100%; object-fit: cover; filter: var(--photo-filter); transform: translate3d(0, var(--py, 0px), 0); }
+.ph.settle img { scale: 1.16; transition: scale 1.9s var(--ease) var(--d, 0s); }
+.ph.settle.on img { scale: 1; }
+.ph[data-par] img { scale: 1.2; }
+.ph.shade::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 10, 9, .2) 0%, rgba(10, 10, 9, 0) 30%, rgba(10, 10, 9, .14) 55%, rgba(10, 10, 9, .84) 100%); pointer-events: none; }
+
+/* ---------- Portada ---------- */
+.hero .in { padding-top: clamp(14px, 2.4vw, 26px); padding-bottom: clamp(10px, 2vw, 20px); }
+.hero-photo { position: relative; height: min(76svh, 680px); min-height: 480px; }
+.hero-photo .ph { position: absolute; inset: 0; }
+.hero-photo .ph img { object-position: 50% 30%; }
+/* En pantallas anchas la foto queda a la derecha y los nombres sobre el fondo, sin tapar a la pareja. */
+@media (min-width: 760px) {
+  .hero-photo { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); height: auto; min-height: 0; column-gap: clamp(8px, 2vw, 28px); }
+  .hero-photo .ph { position: relative; inset: auto; grid-column: 2; grid-row: 1; height: clamp(520px, 78svh, 760px); }
+  .hero-photo .ph img { object-position: 50% 34%; }
+  .vt { grid-column: 2; grid-row: 1; }
+  .vt-l { left: 14px; }
+  .vt-r { right: 14px; }
+  .hero .hero-names { position: static; grid-column: 1; grid-row: 1; align-self: center; align-items: flex-start; text-align: left; padding: 0 clamp(8px, 1.6vw, 24px) 0 0; gap: .7rem; }
+  .hero .hero-names .names { max-width: none; }
+  .hero .hero-kicker { margin-top: .9rem; }
+}
+
+.vt {
+  position: absolute; top: 50%; z-index: 2; writing-mode: vertical-rl; white-space: nowrap;
+  font: 400 .6rem/1 var(--f-serif); letter-spacing: .34em; text-transform: uppercase; color: var(--lime);
+}
+.vt-l { left: clamp(10px, 2vw, 22px); transform: translateY(-50%) rotate(180deg); }
+.vt-r { right: clamp(10px, 2vw, 22px); transform: translateY(-50%); }
+.vt.rv { transition: opacity 1.2s var(--ease) var(--d, 0s); }
+
+.hero-names {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: .4rem;
+  padding: 0 clamp(26px, 5vw, 64px) clamp(20px, 3.4vw, 38px);
+}
+.names {
+  display: flex; flex-direction: column; width: 100%; max-width: 15em; margin: 0;
+  font-family: var(--f-script); font-weight: 400; color: var(--on-ink); line-height: .8;
+  font-size: clamp(4.5rem, 21vw, 7.2rem); text-shadow: 0 2px 30px rgba(10, 10, 9, .5);
+}
+@media (min-width: 760px) { .names { font-size: clamp(5.2rem, 8.4vw, 8.2rem); text-shadow: none; } }
+.names .n { display: inline-block; padding: .16em .24em .3em; margin: -.16em -.24em -.3em; }
+.names .n1 { align-self: flex-start; }
+.names .n2 { align-self: flex-end; margin-top: -.34em; }
+.hero-kicker { font: italic 400 clamp(.95rem, 2.4vw, 1.15rem)/1.4 var(--f-serif); color: var(--on-ink); }
+.hero-date { font: 400 clamp(.6rem, 1.8vw, .72rem)/1.6 var(--f-serif); letter-spacing: .3em; text-transform: uppercase; color: var(--lime); }
+
+.nav {
+  display: grid; grid-template-columns: 1fr 1fr auto 1fr 1fr; align-items: center; gap: clamp(6px, 2vw, 28px);
+  padding: clamp(20px, 3.4vw, 34px) 0 clamp(14px, 2.4vw, 24px);
+  font: 400 clamp(.5rem, 1.9vw, .66rem)/1 var(--f-serif); letter-spacing: .26em; text-transform: uppercase; text-align: center; color: var(--on-ink);
+}
+.nav a { text-decoration: none; padding: 10px 0; background: none; border: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; cursor: pointer; white-space: nowrap; }
+.nav a:hover, .nav a:focus-visible { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; text-decoration-color: var(--orange); }
+.nav .nav-mono { display: block; padding: 0 clamp(4px, 1.4vw, 18px); }
+.nav .nav-mono img { height: clamp(34px, 6vw, 48px); width: auto; }
+@media (max-width: 420px) { .nav { letter-spacing: .16em; } }
+
+/* ---------- Versículo ---------- */
+.verse .in { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(22px, 4vw, 36px); padding-top: clamp(64px, 10vw, 128px); padding-bottom: clamp(60px, 9vw, 112px); }
+.mono { width: clamp(140px, 24vw, 210px); height: auto; --t: 1.4s; }
+.quote { font-family: var(--f-serif); font-style: italic; font-weight: 400; line-height: 1.6; font-size: clamp(1.35rem, 3.3vw, 2rem); max-width: 25em; text-wrap: balance; color: var(--deep); }
+.quote .w { display: inline-block; --t: .9s; }
+.cite { font: 400 .68rem/1 var(--f-serif); letter-spacing: .3em; text-transform: uppercase; color: var(--deep); }
+
+/* ---------- Datos ---------- */
+.datos .in { display: flex; flex-direction: column; align-items: center; gap: clamp(36px, 6vw, 60px); padding-top: clamp(60px, 9vw, 112px); padding-bottom: 0; }
+.trio { display: grid; grid-template-columns: 1fr auto 1.15fr auto 1fr; align-items: center; width: 100%; max-width: 1040px; }
+.col { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .1em; padding: 0 clamp(14px, 2.6vw, 40px); min-width: 0; }
+.sep { width: 1px; align-self: stretch; min-height: 170px; background: var(--line-light); --t: 1s; transform-origin: center top; }
+.js .rv.sep:not(.on) { transform: scaleY(0); opacity: 1; }
+@media (max-width: 760px) {
+  .trio { grid-template-columns: 1fr; row-gap: 30px; }
+  .sep { width: 60%; height: 1px; min-height: 0; align-self: center; justify-self: center; transform-origin: center left; }
+  .js .rv.sep:not(.on) { transform: scaleX(0); }
+}
+.dow { font-family: var(--f-serif); font-size: clamp(1.3rem, 2.6vw, 1.7rem); letter-spacing: .14em; }
+.day { font-family: var(--f-serif); font-weight: 700; font-size: clamp(5.4rem, 12vw, 8.4rem); line-height: .92; color: var(--ink); }
+.month { font-family: var(--f-serif); text-transform: uppercase; letter-spacing: .14em; font-size: clamp(1.4rem, 2.9vw, 2.15rem); }
+.year { font-weight: 300; letter-spacing: .22em; font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.place { font-family: var(--f-serif); text-transform: uppercase; letter-spacing: .1em; line-height: 1.28; font-size: clamp(1.45rem, 2.9vw, 2.2rem); }
+.salon { letter-spacing: .08em; font-size: clamp(1.4rem, 2.7vw, 2.05rem); margin-top: .15em; }
+.addr { margin-top: .6em; font-size: .88rem; letter-spacing: .06em; color: var(--deep); line-height: 1.55; font-weight: 400; }
+.hour { font-family: var(--f-serif); line-height: .95; font-size: clamp(4.4rem, 10vw, 7rem); color: var(--ink); }
+.pm { font-weight: 300; letter-spacing: .16em; font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+
+.count-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.count-lead { font: 400 .68rem/1 var(--f-serif); letter-spacing: .34em; text-transform: uppercase; color: var(--deep); }
+.count { display: flex; gap: clamp(20px, 5vw, 58px); justify-content: center; }
+.count div { display: flex; flex-direction: column; align-items: center; min-width: 3.2em; }
+.count b { font-family: var(--f-serif); font-weight: 400; font-size: clamp(2.1rem, 6vw, 3.3rem); line-height: 1; font-variant-numeric: lining-nums tabular-nums; color: var(--ink); }
+.count span { margin-top: .7em; font-size: .62rem; letter-spacing: .26em; text-transform: uppercase; color: var(--deep); font-weight: 500; }
+
+.btns { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn {
+  display: inline-flex; align-items: center; gap: .8em; padding: 1.05em 1.8em;
+  border: 1px solid currentColor; background: transparent; text-decoration: none; cursor: pointer;
+  font: 500 .66rem/1 var(--f-serif); letter-spacing: .26em; text-transform: uppercase;
+  transition: background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease), opacity 1s var(--ease) var(--d, 0s), transform 1s var(--ease) var(--d, 0s);
+}
+.btn svg { width: 1.4em; height: 1.4em; flex: none; }
+.btn.line-ink { color: var(--ink); }
+.btn.line-ink:hover, .btn.line-ink:focus-visible { background: var(--ink); color: var(--ivory-2); border-color: var(--ink); }
+.btn.solid { background: transparent; color: var(--deep); border-color: var(--deep); }
+.btn.solid:hover, .btn.solid:focus-visible { background: var(--deep); color: var(--ivory-2); }
+
+/* Las dos fotos cruzan de la banda verde a la marfil. */
+.pair { position: relative; z-index: 3; display: flex; justify-content: center; align-items: flex-start; gap: clamp(10px, 2.4vw, 26px); margin-top: clamp(20px, 4vw, 48px); margin-bottom: calc(var(--overlap) * -1); }
+.pair .ph { width: min(40vw, 320px); aspect-ratio: 3 / 4; }
+.pair .p2 { margin-top: clamp(28px, 6vw, 72px); }
+
+/* Texto claro sobre las bandas profundas */
+.datos .day, .datos .hour, .datos .count b, .h4 { color: var(--ivory-2); }
+.datos .addr, .datos .count-lead, .datos .count span { color: var(--on-ink-dim); }
+.datos .sep { background: var(--line-ink); }
+.btn.line-ink { color: var(--on-ink); }
+.btn.line-ink:hover, .btn.line-ink:focus-visible { background: var(--ivory-2); color: var(--deep); border-color: var(--ivory-2); }
+.env { border-color: var(--on-ink); background: var(--deep); }
+.env polyline, .env polygon { stroke: var(--on-ink); }
+.env polygon { fill: var(--deep); }
+.eyebrow.on-deep { color: var(--lime); }
+.sobres .env polyline, .sobres .env polygon { stroke: var(--on-ink); }
+.sobres .env polygon { fill: var(--deep); }
+
+/* ---------- Lugar y mapa ---------- */
+.lugar .in { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(30px, 6vw, 84px); padding-top: calc(var(--overlap) + clamp(48px, 8vw, 96px)); padding-bottom: clamp(60px, 9vw, 116px); }
+@media (max-width: 860px) { .lugar .in { grid-template-columns: 1fr; } }
+.lugar-text { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.eyebrow { font: 400 .68rem/1 var(--f-serif); letter-spacing: .34em; text-transform: uppercase; color: var(--deep); }
+.h2 { font-family: var(--f-serif); font-style: italic; font-weight: 400; line-height: 1.06; font-size: clamp(2.2rem, 5.2vw, 3.7rem); color: var(--deep); text-wrap: balance; }
+.body { font-size: 1rem; line-height: 1.85; max-width: 32em; }
+.hair { display: block; width: 64px; height: 1px; background: var(--deep); transform-origin: left; }
+
+.map { position: relative; aspect-ratio: 4 / 3; background: #e8e8e0; border: 1px solid var(--line-light); }
+.map .base { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.map .pin-wrap { position: absolute; left: 50%; top: 50%; z-index: 2; width: 0; height: 0; }
+.pin { position: absolute; left: -17px; top: -46px; width: 34px; height: 46px; color: var(--orange); filter: drop-shadow(0 4px 5px rgba(27, 27, 25, .35)); }
+.js .rv.drop:not(.on) { transform: translateY(-46px); opacity: 0; }
+.pin.rv { --t: .9s; }
+.pulse { position: absolute; left: -22px; top: -9px; width: 44px; height: 18px; border-radius: 50%; border: 1px solid var(--orange-deep); animation: pulse 2.6s var(--ease) infinite; opacity: 0; }
+@keyframes pulse { 0% { transform: scale(.3); opacity: .9; } 100% { transform: scale(2.2); opacity: 0; } }
+.map-label { position: absolute; left: 50%; top: calc(50% + 14px); z-index: 2; transform: translateX(-50%); white-space: nowrap; background: var(--ivory-2); color: var(--ink); padding: .55em 1em; font: italic 400 clamp(.82rem, 2vw, .98rem)/1.2 var(--f-serif); box-shadow: 0 6px 18px rgba(27, 27, 25, .2); }
+.map-label.rv { transition-property: opacity, transform; }
+.attr { position: absolute; right: 0; bottom: 0; z-index: 3; background: rgba(248, 247, 242, .88); padding: 3px 8px; font: 400 .6rem/1.4 var(--f-sans); color: var(--mute); text-decoration: none; }
+.map .live { position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; filter: grayscale(.85) sepia(.25) contrast(1.03); transition: opacity .6s var(--ease); }
+.map.is-live .live { opacity: 1; }
+.map.is-live.active .live { pointer-events: auto; }
+.map.is-live .pin-wrap, .map.is-live .map-label { display: none; }
+
+/* ---------- Dresscode ---------- */
+.dress .in { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(30px, 6vw, 88px); padding-top: clamp(24px, 4vw, 56px); padding-bottom: clamp(64px, 9vw, 120px); }
+@media (max-width: 860px) { .dress .in { grid-template-columns: 1fr; } }
+.dress-photo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(10px, 2vw, 22px); align-items: stretch; }
+.dress-photo .ph { aspect-ratio: 4 / 5; }
+.vscript { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--f-script); font-size: clamp(1.2rem, 3.4vw, 1.8rem); line-height: 1.2; color: var(--deep); max-height: 100%; align-self: stretch; text-align: center; }
+.dress-text { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.caps { font-family: var(--f-sans); font-weight: 600; text-transform: uppercase; line-height: .94; letter-spacing: -.01em; font-size: clamp(2.5rem, 6.4vw, 4.6rem); }
+.caps span { display: block; }
+.caps .a { color: var(--olive); }
+.caps .b { color: var(--orange); }
+.h3 { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: clamp(1.6rem, 3.2vw, 2.2rem); color: var(--deep); }
+.swatches { display: flex; gap: clamp(18px, 4vw, 34px); }
+.sw { display: flex; flex-direction: column; align-items: center; gap: 12px; font: 400 .62rem/1 var(--f-serif); letter-spacing: .24em; text-transform: uppercase; color: var(--mute); }
+.sw i { display: block; width: clamp(58px, 10vw, 84px); aspect-ratio: 1; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(27, 27, 25, .1); }
+
+/* Dresscode como en la referencia: banda profunda con fotos que cruzan al crema */
+.dresstop .in { padding-top: clamp(64px, 10vw, 120px); padding-bottom: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(36px, 6vw, 60px); }
+.dt-head { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.dt-title { font-family: var(--f-serif); font-weight: 400; text-transform: uppercase; letter-spacing: .08em; line-height: 1.12; font-size: clamp(2rem, 5.6vw, 3.6rem); color: var(--ivory-2); }
+.dt-text { max-width: 30em; font-size: .95rem; line-height: 1.8; color: var(--on-ink-dim); }
+.dresstop + .dress .in { padding-top: calc(var(--overlap) + clamp(40px, 6vw, 80px)); }
+
+/* ---------- Lluvia de sobres ---------- */
+.sobres { overflow: hidden; }
+.sobres .in { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding-top: clamp(64px, 9vw, 124px); padding-bottom: clamp(60px, 9vw, 112px); }
+.sobres .in > *:not(.rain) { position: relative; z-index: 1; }
+.rain { position: absolute; inset: 0; z-index: 0 !important; pointer-events: none; }
+.mini { position: absolute; top: -30px; left: var(--x); width: 26px; height: 19px; color: var(--ivory-2); opacity: 0; animation: fall var(--dur) linear var(--dl) infinite paused; }
+.rain.on .mini { animation-play-state: running; }
+@keyframes fall { 0% { transform: translateY(0) rotate(var(--r0)); opacity: 0; } 12% { opacity: .75; } 85% { opacity: .75; } 100% { transform: translateY(min(78vh, 620px)) rotate(var(--r1)); opacity: 0; } }
+.env-wrap { perspective: 700px; margin: 36px 0 12px; }
+.env { position: relative; width: clamp(150px, 22vw, 200px); aspect-ratio: 7 / 5; border: 1px solid var(--ink); background: var(--ivory-2); }
+.env svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.env .body-lines { position: absolute; inset: 0; }
+.env .flap { position: absolute; left: -1px; right: -1px; top: -1px; height: 64%; transform-origin: 50% 0; transform: rotateX(180deg); --t: 1.3s; }
+.js .env .flap:not(.on) { transform: rotateX(0deg); opacity: 1; }
+.env polyline, .env polygon { fill: none; stroke: var(--ink); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.env polygon { fill: var(--peach); }
+.h4 { font-family: var(--f-serif); font-weight: 400; font-style: italic; font-size: clamp(1.8rem, 3.8vw, 2.6rem); color: var(--ink); }
+.soft { font: italic 400 clamp(1.08rem, 2.2vw, 1.3rem)/1.7 var(--f-serif); max-width: 28em; text-wrap: balance; }
+
+/* ---------- Confirmación ---------- */
+.rsvp .in { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding-top: clamp(56px, 8vw, 100px); padding-bottom: clamp(56px, 8vw, 100px); }
+.rsvp .hair { transform-origin: center; }
+
+/* ---------- Cierre ---------- */
+.close .in { display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(18px, 3vw, 28px); padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(80px, 11vw, 140px); }
+.close-photo { width: min(100%, 440px); }
+.close-photo .ph { aspect-ratio: 4 / 5; }
+.close .names { flex-direction: row; justify-content: center; align-items: baseline; gap: .12em; max-width: none; width: auto; font-size: clamp(3.2rem, 12.5vw, 6.6rem); line-height: 1; margin-top: -.62em; position: relative; z-index: 2; }
+.close .names .n1, .close .names .n2 { align-self: auto; margin-top: -.16em; }
+.close .names .amp { font-size: .9em; }
+.dateline { font: 400 .8rem/1 var(--f-serif); letter-spacing: .4em; text-transform: uppercase; color: var(--lime); }
+.sub { font: 400 .62rem/1.6 var(--f-serif); letter-spacing: .26em; text-transform: uppercase; color: var(--on-ink-dim); }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- PORTADA -->
+  <header class="hero band ink" id="portada" data-chain data-start="3.2" data-step=".1">
+    <div class="in">
+      <div class="hero-photo">
+        <figure class="ph shade settle rv clip" style="--d:.1s;--t:1.3s"><img src="img/hero.jpg" alt="Andrea y Camilo bajan tomados de la mano unas escalinatas de piedra"></figure>
+        <span class="vt vt-l rv" style="--d:1s">17 · 12 · 2027</span>
+        <span class="vt vt-r rv" style="--d:1.1s">Hacienda La Victoria</span>
+        <div class="hero-names">
+          <h1 class="names" aria-label="Andrea y Camilo">
+            <span class="n n1 rv wipe" style="--d:1.2s;--t:1.3s" aria-hidden="true">Andrea &amp;</span>
+            <span class="n n2 rv wipe" style="--d:1.95s;--t:1.3s" aria-hidden="true">Camilo</span>
+          </h1>
+          <p class="hero-kicker rv up" style="--d:2.8s">Te invitamos a celebrar nuestra boda</p>
+          <p class="hero-date rv up" style="--d:3s">Viernes 17 de diciembre de 2027</p>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Secciones">
+        <a class="rv up" href="#datos" data-go="datos">Fecha</a>
+        <a class="rv up" href="#lugar" data-go="lugar">Lugar</a>
+        <a class="nav-mono rv up" href="#portada" data-go="portada" aria-label="Volver al inicio"><img src="img/monograma-ivory.png" width="850" height="731" alt=""></a>
+        <a class="rv up" href="#dresscode" data-go="dresscode">Dresscode</a>
+        <a class="rv up" href="#asistencia" data-go="asistencia">Asistencia</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- VERSÍCULO -->
+  <section class="verse band ivory" id="versiculo" data-chain data-start="1.1" data-step=".055">
+    <div class="in">
+      <img class="mono rv wipe" style="--d:0s" src="img/monograma-ink.png" width="850" height="731" alt="Monograma A y C">
+      <p class="quote" id="quote">Y sobre todo vístanse de amor, que es el lazo que une todo en perfecta armonía</p>
+      <p class="cite rv up">Colosenses 3:14</p>
+    </div>
+  </section>
+
+  <!-- DATOS -->
+  <section class="datos band sage" id="datos">
+    <div class="in">
+      <div class="trio" data-chain data-step=".11">
+        <div class="col">
+          <p class="dow rv up">Viernes</p>
+          <p class="day rv up">17</p>
+          <p class="month rv up">Diciembre</p>
+          <p class="year rv up">2027</p>
+        </div>
+        <i class="sep rv"></i>
+        <div class="col">
+          <p class="place rv up">Hacienda<br>La Victoria</p>
+          <p class="salon rv up">Salón Garden</p>
+          <p class="addr rv up">Vereda El Santuario Bajo<br>Subachoque</p>
+        </div>
+        <i class="sep rv"></i>
+        <div class="col">
+          <p class="hour rv up">3:00</p>
+          <p class="pm rv up">PM</p>
+        </div>
+      </div>
+
+      <div class="count-wrap" id="count-wrap" data-chain data-step=".12">
+        <p class="count-lead rv up">Faltan</p>
+        <div class="count">
+          <div class="rv up"><b id="c-d">0</b><span>días</span></div>
+          <div class="rv up"><b id="c-h">00</b><span>horas</span></div>
+          <div class="rv up"><b id="c-m">00</b><span>minutos</span></div>
+          <div class="rv up"><b id="c-s">00</b><span>segundos</span></div>
+        </div>
+      </div>
+
+      <div class="btns" data-chain>
+        <a class="btn line-ink rv up" id="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boda+Andrea+%26+Camilo&amp;dates=20271217T150000/20271217T230000&amp;ctz=America/Bogota&amp;location=Hacienda+La+Victoria,+Vereda+El+Santuario+Bajo,+Subachoque&amp;details=Sal%C3%B3n+Garden" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+          Agregar al calendario
+        </a>
+      </div>
+
+      <div class="pair" data-chain data-step=".25">
+        <figure class="ph p1 rv clip" style="--t:1.2s"><img src="img/cover-1.jpg" alt="Andrea y Camilo se besan en un jardín frente a un edificio histórico" style="object-position:50% 60%"></figure>
+        <figure class="ph p2 rv clip" style="--t:1.2s"><img src="img/g2.jpg" alt="Las manos entrelazadas de Andrea y Camilo con sus anillos"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- LUGAR -->
+  <section class="lugar band ivory" id="lugar">
+    <div class="in">
+      <div class="lugar-text" data-chain data-step=".14">
+        <p class="eyebrow rv up">Lugar</p>
+        <h2 class="h2 rv up">Hacienda La Victoria</h2>
+        <p class="body rv up">Salón Garden<br>Vereda El Santuario Bajo<br>Subachoque</p>
+        <i class="hair rv line"></i>
+        <div class="btns rv up">
+          <a class="btn solid" href="https://www.google.com/maps/dir/?api=1&amp;destination=4.8992284,-74.1828565" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            Cómo llegar
+          </a>
+        </div>
+      </div>
+
+      <div data-chain data-step=".35">
+        <figure class="map rv clip" id="map" style="--t:1.3s">
+          <img class="base" src="img/mapa.jpg" width="1536" height="1024" alt="Mapa con la ubicación de Hacienda La Victoria, en la vereda El Santuario Bajo de Subachoque">
+          <iframe class="live" id="live" title="Mapa interactivo de Hacienda La Victoria" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=4.8992284,-74.1828565&amp;z=15&amp;hl=es&amp;output=embed"></iframe>
+          <div class="pin-wrap" aria-hidden="true">
+            <i class="pulse"></i>
+            <svg class="pin rv drop" style="--d:1.2s" viewBox="0 0 34 46"><path d="M17 45C17 45 2 29.5 2 16.5a15 15 0 0 1 30 0C32 29.5 17 45 17 45z" fill="currentColor"/><circle cx="17" cy="16.5" r="5.6" fill="#1b1b19"/></svg>
+          </div>
+          <p class="map-label rv up" style="--d:1.6s" aria-hidden="true">Hacienda La Victoria</p>
+          <a class="attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESSCODE -->
+  <section class="dresstop band ink" id="dresscode">
+    <div class="in">
+      <div class="dt-head" data-chain data-step=".14">
+        <p class="eyebrow on-deep rv up">Dresscode</p>
+        <h2 class="dt-title rv up">Elegante<br>formal</h2>
+        <p class="dt-text rv up">Una ocasión especial merece un look a la altura. Los invitamos a vestir de manera elegante y formal.</p>
+      </div>
+      <div class="pair dpair" data-chain data-step=".25">
+        <figure class="ph p1 rv clip" style="--t:1.2s"><img src="img/dress.jpg" alt="Andrea y Camilo caminan abrazados bajo una galería de columnas"></figure>
+        <figure class="ph p2 rv clip" style="--t:1.2s"><img src="img/close.jpg" alt="Andrea apoya la cabeza en el hombro de Camilo" style="object-position:50% 35%"></figure>
+      </div>
+    </div>
+  </section>
+  <section class="dress band ivory">
+    <div class="in">
+      <div class="dress-photo" data-chain data-step=".2">
+        <p class="vscript rv up">Evitar jeans y tenis</p>
+        <figure class="ph rv clip" data-par=".06" style="--t:1.3s"><img src="img/hero.jpg" alt="Andrea y Camilo bajan tomados de la mano unas escalinatas" style="object-position:50% 40%"></figure>
+      </div>
+      <div class="dress-text" data-chain data-step=".13">
+        <h2 class="h3 rv up">Colores reservados</h2>
+        <p class="body rv up">Naranja, verde y beige.</p>
+        <div class="swatches">
+          <div class="sw rv pop" style="--c:var(--orange)"><i></i>Naranja</div>
+          <div class="sw rv pop" style="--c:var(--lime)"><i></i>Verde</div>
+          <div class="sw rv pop" style="--c:var(--beige)"><i></i>Beige</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LLUVIA DE SOBRES -->
+  <section class="sobres band orange" id="sobres">
+    <div class="in" data-chain data-step=".16">
+      <div class="rain rv" aria-hidden="true">
+        <svg class="mini" style="--x:8%;--dur:9s;--dl:0s;--r0:-14deg;--r1:18deg"><use href="#sobre"/></svg>
+        <svg class="mini" style="--x:22%;--dur:11s;--dl:2.4s;--r0:10deg;--r1:-20deg"><use href="#sobre"/></svg>
+        <svg class="mini" style="--x:37%;--dur:8.5s;--dl:5s;--r0:-8deg;--r1:14deg"><use href="#sobre"/></svg>
+        <svg class="mini" style="--x:58%;--dur:10s;--dl:1.2s;--r0:16deg;--r1:-12deg"><use href="#sobre"/></svg>
+        <svg class="mini" style="--x:72%;--dur:12s;--dl:3.8s;--r0:-18deg;--r1:10deg"><use href="#sobre"/></svg>
+        <svg class="mini" style="--x:86%;--dur:9.5s;--dl:6.4s;--r0:12deg;--r1:-16deg"><use href="#sobre"/></svg>
+        <svg class="mini" style="--x:47%;--dur:13s;--dl:8s;--r0:-10deg;--r1:20deg"><use href="#sobre"/></svg>
+      </div>
+      <div class="env-wrap rv up" aria-hidden="true">
+        <div class="env">
+          <svg class="body-lines" viewBox="0 0 100 71" preserveAspectRatio="none"><polyline points="0,71 50,34 100,71"/></svg>
+          <div class="flap rv"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 50,100"/></svg></div>
+        </div>
+      </div>
+      <h2 class="h4 rv up">Lluvia de sobres</h2>
+      <p class="soft rv up">Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo más, nos haría muy felices recibir una lluvia de sobres.</p>
+    </div>
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section class="rsvp band ivory" id="asistencia">
+    <div class="in" data-chain data-step=".14">
+      <i class="hair rv line"></i>
+      <p class="eyebrow rv up">Confirmación de asistencia</p>
+      <p class="body rv up">Nuestra wedding planner se comunicará directamente para confirmar su asistencia.</p>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="close band ink">
+    <div class="in" data-chain data-step=".2">
+      <div class="close-photo">
+        <figure class="ph shade rv clip" data-par=".06" style="--t:1.3s"><img src="img/close.jpg" alt="Andrea apoya la cabeza en el hombro de Camilo frente a un edificio histórico"></figure>
+      </div>
+      <h2 class="names" aria-label="Andrea y Camilo">
+        <span class="n n1 rv wipe" style="--t:1.4s" aria-hidden="true">Andrea</span>
+        <span class="amp rv pop" aria-hidden="true">&amp;</span>
+        <span class="n n2 rv wipe" style="--t:1.4s" aria-hidden="true">Camilo</span>
+      </h2>
+      <p class="dateline rv up">17 · 12 · 2027</p>
+      <p class="sub rv up">Hacienda La Victoria · Subachoque</p>
+    </div>
+  </section>
+
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sobre" viewBox="0 0 26 19"><rect x=".5" y=".5" width="25" height="18" fill="none" stroke="currentColor"/><path d="M.5 .5 13 10.5 25.5 .5" fill="none" stroke="currentColor"/></symbol>
+</svg>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  root.classList.add('js');
+
+  // El versículo se anima palabra por palabra.
+  var quote = document.getElementById('quote');
+  if (quote) {
+    var words = quote.textContent.trim().split(/\s+/);
+    quote.innerHTML = words.map(function (w) { return '<span class="w rv up">' + w + '</span>'; }).join(' ');
+  }
+
+  // Retardo en cadena: cada grupo reparte su tiempo entre sus piezas, en orden.
+  var groups = [].slice.call(document.querySelectorAll('[data-chain]'));
+  groups.forEach(function (g) {
+    var step = parseFloat(g.getAttribute('data-step') || '.12');
+    var start = parseFloat(g.getAttribute('data-start') || '0');
+    var i = 0;
+    [].slice.call(g.querySelectorAll('.rv')).forEach(function (el) {
+      if (!el.style.getPropertyValue('--d')) {
+        el.style.setProperty('--d', (start + i * step).toFixed(2) + 's');
+        i++;
+      }
+    });
+  });
+
+  function show(g) {
+    if (g.classList.contains('rv')) g.classList.add('on');
+    [].slice.call(g.querySelectorAll('.rv')).forEach(function (el) { el.classList.add('on'); });
+  }
+
+  var hero = document.getElementById('portada');
+  var below = groups.filter(function (g) { return g !== hero; });
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    groups.forEach(show);
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+    below.forEach(function (g) { io.observe(g); });
+
+    // La portada espera a que carguen tipografías y foto para que la cadena corra limpia.
+    var imgs = [].slice.call(hero.querySelectorAll('img')).map(function (im) {
+      return im.decode ? im.decode().catch(function () {}) : Promise.resolve();
+    });
+    var fonts = (document.fonts && document.fonts.load)
+      ? Promise.all([
+          document.fonts.load('1em "Alex Brush"'),
+          document.fonts.load('italic 1em "Playfair Display"'),
+          document.fonts.load('300 1em "Raleway"')
+        ]).catch(function () {})
+      : Promise.resolve();
+    var started = false;
+    function start() { if (started) return; started = true; show(hero); }
+    Promise.all([Promise.all(imgs), fonts]).then(start);
+    setTimeout(start, 2800);
+  }
+
+  // Parallax suave en las fotos.
+  var par = [].slice.call(document.querySelectorAll('[data-par]'));
+  if (!reduce && par.length) {
+    var queued = false;
+    var update = function () {
+      queued = false;
+      var vh = window.innerHeight;
+      par.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -120 || r.top > vh + 120) return;
+        var p = ((r.top + r.height / 2) - vh / 2) / vh;
+        var k = parseFloat(el.getAttribute('data-par')) || .07;
+        el.style.setProperty('--py', (-p * r.height * k).toFixed(1) + 'px');
+      });
+    };
+    window.addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  // Menú: baja suave a cada sección sin tocar la dirección de la página.
+  [].slice.call(document.querySelectorAll('[data-go]')).forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById(a.getAttribute('data-go'));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+
+  // Mapa interactivo (solo existe en la versión alojada en tu propio sitio).
+  var map = document.getElementById('map'), live = document.getElementById('live');
+  if (map && live) {
+    live.addEventListener('load', function () { map.classList.add('is-live'); });
+    map.addEventListener('click', function () { map.classList.add('active'); });
+    map.addEventListener('mouseleave', function () { map.classList.remove('active'); });
+  }
+
+  // Cuenta regresiva hasta el viernes 17 de diciembre de 2027, 3:00 p. m. (hora de Colombia).
+  var target = new Date('2027-12-17T15:00:00-05:00').getTime();
+  var elD = document.getElementById('c-d'), elH = document.getElementById('c-h'),
+      elM = document.getElementById('c-m'), elS = document.getElementById('c-s');
+  var wrap = document.getElementById('count-wrap');
+  function two(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var left = Math.floor((target - Date.now()) / 1000);
+    if (left <= 0) { if (wrap) wrap.hidden = true; return false; }
+    elD.textContent = Math.floor(left / 86400);
+    elH.textContent = two(Math.floor(left % 86400 / 3600));
+    elM.textContent = two(Math.floor(left % 3600 / 60));
+    elS.textContent = two(left % 60);
+    return true;
+  }
+  if (tick()) setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>

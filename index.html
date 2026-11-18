@@ -297,22 +297,22 @@ a { color: inherit; }
 .sobres { overflow: hidden; }
 .sobres .h4 { color: var(--ivory-2); }
 .sobres .env { background: var(--deep); }
-.sobres .in { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding-top: clamp(64px, 9vw, 124px); padding-bottom: clamp(60px, 9vw, 112px); }
+.sobres .in { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding-top: clamp(40px, 6vw, 72px); padding-bottom: clamp(40px, 6vw, 72px); }
 .sobres .in > *:not(.rain) { position: relative; z-index: 1; }
 .rain { position: absolute; inset: 0; z-index: 0 !important; pointer-events: none; }
 .mini { position: absolute; top: -30px; left: var(--x); width: 26px; height: 19px; color: var(--ivory-2); opacity: 0; animation: fall var(--dur) linear var(--dl) infinite paused; }
 .rain.on .mini { animation-play-state: running; }
 @keyframes fall { 0% { transform: translateY(0) rotate(var(--r0)); opacity: 0; } 12% { opacity: .75; } 85% { opacity: .75; } 100% { transform: translateY(min(78vh, 620px)) rotate(var(--r1)); opacity: 0; } }
-.env-wrap { perspective: 700px; margin: 36px 0 12px; }
-.env { position: relative; width: clamp(150px, 22vw, 200px); aspect-ratio: 7 / 5; border: 1px solid var(--ink); background: var(--ivory-2); }
+.env-wrap { margin: 4px 0 0; }
+.env { position: relative; width: clamp(84px, 12vw, 110px); aspect-ratio: 7 / 5; border: 1px solid var(--ink); background: var(--ivory-2); }
 .env svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .env .body-lines { position: absolute; inset: 0; }
-.env .flap { position: absolute; left: -1px; right: -1px; top: -1px; height: 64%; transform-origin: 50% 0; transform: rotateX(180deg); --t: 1.3s; }
-.js .env .flap:not(.on) { transform: rotateX(0deg); opacity: 1; }
+.env .flap { position: absolute; left: -1px; right: -1px; top: -1px; height: 64%; transform-origin: 50% 0; transform: none; }
+
 .env polyline, .env polygon { fill: none; stroke: var(--ink); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .env polygon { fill: var(--peach); }
-.h4 { font-family: var(--f-serif); font-weight: 400; font-style: italic; font-size: clamp(1.8rem, 3.8vw, 2.6rem); color: var(--ink); }
-.soft { font: italic 400 clamp(1.08rem, 2.2vw, 1.3rem)/1.7 var(--f-serif); max-width: 28em; text-wrap: balance; }
+.h4 { font-family: var(--f-serif); font-weight: 400; font-style: italic; font-size: clamp(1.4rem, 2.6vw, 1.8rem); color: var(--ink); }
+.soft { font: italic 400 clamp(.95rem, 1.8vw, 1.05rem)/1.7 var(--f-serif); max-width: 26em; opacity: .85; text-wrap: balance; }
 
 /* ---------- Confirmación ---------- */
 .rsvp .in { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding-top: clamp(56px, 8vw, 100px); padding-bottom: clamp(56px, 8vw, 100px); }
@@ -492,19 +492,10 @@ a { color: inherit; }
   <!-- LLUVIA DE SOBRES -->
   <section class="sobres band orange" id="sobres">
     <div class="in" data-chain data-step=".16">
-      <div class="rain rv" aria-hidden="true">
-        <svg class="mini" style="--x:8%;--dur:9s;--dl:0s;--r0:-14deg;--r1:18deg"><use href="#sobre"/></svg>
-        <svg class="mini" style="--x:22%;--dur:11s;--dl:2.4s;--r0:10deg;--r1:-20deg"><use href="#sobre"/></svg>
-        <svg class="mini" style="--x:37%;--dur:8.5s;--dl:5s;--r0:-8deg;--r1:14deg"><use href="#sobre"/></svg>
-        <svg class="mini" style="--x:58%;--dur:10s;--dl:1.2s;--r0:16deg;--r1:-12deg"><use href="#sobre"/></svg>
-        <svg class="mini" style="--x:72%;--dur:12s;--dl:3.8s;--r0:-18deg;--r1:10deg"><use href="#sobre"/></svg>
-        <svg class="mini" style="--x:86%;--dur:9.5s;--dl:6.4s;--r0:12deg;--r1:-16deg"><use href="#sobre"/></svg>
-        <svg class="mini" style="--x:47%;--dur:13s;--dl:8s;--r0:-10deg;--r1:20deg"><use href="#sobre"/></svg>
-      </div>
       <div class="env-wrap rv up" aria-hidden="true">
         <div class="env">
           <svg class="body-lines" viewBox="0 0 100 71" preserveAspectRatio="none"><polyline points="0,71 50,34 100,71"/></svg>
-          <div class="flap rv"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 50,100"/></svg></div>
+          <div class="flap"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 50,100"/></svg></div>
         </div>
       </div>
       <h2 class="h4 rv up">Lluvia de sobres</h2>

@@ -293,6 +293,13 @@ a { color: inherit; }
 .board-sub { font-size: .85rem; line-height: 1.5; }
 .board-go { margin-top: 6px; font: 500 .62rem/1 var(--f-serif); letter-spacing: .26em; text-transform: uppercase; }
 
+/* En celular, el bloque de colores reservados va centrado */
+@media (max-width: 860px) {
+  .dress-text { align-items: center; text-align: center; }
+  .swatches { justify-content: center; width: 100%; }
+  .board { margin-inline: auto; text-align: left; }
+}
+
 /* ---------- Lluvia de sobres ---------- */
 .sobres { overflow: hidden; }
 .sobres .h4 { color: var(--ivory-2); }
